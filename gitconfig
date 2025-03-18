@@ -1,0 +1,72 @@
+[user]
+    # update the [user] values below with your personal details. For the signing key, you can either
+    # provide your public ssh key as a string (obviously without quotes) or specify the file path to your .pub file
+    name =
+    email =
+    signingkey =
+
+[init]
+    defaultBranch = main
+
+[push]
+    # configures Git to push the currently checked-out branch to a remote branch with the same name, and creating it if it doesn't exist
+    default = current
+
+[alias]
+    aa = add --all
+    ap = add --patch
+    st = status
+    p = push
+    pf = push --force-with-lease
+    diffmain = !"git log --no-merges origin/$(git mainormaster).."
+    lg = log --oneline --graph --decorate --all
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    # I use this line to automatically push to my self-hosted git and github. You will probably never need this
+    pushall = !git push origin HEAD && git push github HEAD
+
+[core]
+    exludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    # converts Windows CRLF line endings to UNIX LF on commit
+    autocrlf = input
+    # https://github.com/dandavison/delta
+    pager=delta
+
+[gpg]
+    format = ssh
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgsign = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    line-numbers = true
+    side-by-side = true
+
+[diff]
+    colorMoved= default
+    renames = copies
+    submodule = log
+
+[merge]
+    conflictstyle = zdiff3
+
+[fetch]
+    prune = true
+
+[rebase]
+    autosquash = true
+
+[checkout]
+    defaultRemote = origin
+
+[stash]
+    showPatch = true

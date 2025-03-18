@@ -1,0 +1,3 @@
+# Note: podman also respects this files
+docker-compose.yml
+Dockerfile

@@ -1,0 +1,13 @@
+*.gif diff=image
+*.jpeg diff=image
+*.jpg diff=image
+*.png diff=image
+
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.h5     filter=lfs diff=lfs merge=lfs -text
+*.pth    filter=lfs diff=lfs merge=lfs -text
+*.ckpt   filter=lfs diff=lfs merge=lfs -text
+*.pb     filter=lfs diff=lfs merge=lfs -text
+*.npz    filter=lfs diff=lfs merge=lfs -text
+*.tfrecord filter=lfs diff=lfs merge=lfs -text
