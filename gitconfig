@@ -70,3 +70,6 @@
 
 [stash]
     showPatch = true
+
+[pull]
+    rebase = true
