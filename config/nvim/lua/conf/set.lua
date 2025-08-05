@@ -53,3 +53,19 @@ vim.api.nvim_set_hl(0, "NormalNC", { bg = "#1c1c1c" })
 
 -- make colorcolumn grey like habamax
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#3a3a3a" })
+
+-- Global statusline (one bar for all windows)
+vim.o.laststatus = 3
+-- Don’t show duplicate “-- INSERT --” since the statusline will show mode
+vim.o.showmode = false
+
+vim.o.statusline = table.concat({
+  " %f",          -- filename
+  " %m%r%h%w",    -- flags: [+] modified, RO, help, preview
+  " %=",          -- right align the rest
+  " %{mode()}",   -- current mode
+  " %y",          -- filetype
+  " %l:%c",       -- line:col
+  " %p%%",        -- percent through file
+})
+
