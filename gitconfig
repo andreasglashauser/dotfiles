@@ -1,0 +1,64 @@
+[user]
+    # update the [user] values below with your personal details. For the signing key, 
+    # provide your GPG key ID (e.g., the last 8 or 16 characters of your key fingerprint)
+    name = Andreas Glashauser
+    email = andreas.glashauser@csp-sw.de
+    signingkey = 9CB127F85E3574310DC5D549B9EDE8DCF003F801
+[init]
+    defaultBranch = main
+[push]
+    # configures Git to push the currently checked-out branch to a remote branch with the same name, and creating it if it doesn't exist
+    # default value is 'simple' which pushes the current branch to the upstream branch, but only if they have the same name --> it doesnt create a new branch
+    default = current
+[alias]
+    aa = add --all
+    ap = add --patch
+    st = status
+    p = push
+    pf = push --force-with-lease
+    diffmain = !"git log --no-merges origin/$(git mainormaster).."
+    lg = log --oneline --graph --decorate --all
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    # I use this line to automatically push to my self-hosted git and github. You will probably never need this
+    pushall = !git push origin HEAD && git push github HEAD
+[core]
+    # Line endings: Windows=CRLF, Unix=LF. On commit Git converts CRLF->LF; checkout unchanged.
+    # Prevents "line-ending-only" diffs; Windows devs don't need to change anything.
+    autocrlf = input
+[gpg]
+    format = openpgp
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true
+[diff]
+    # Highlights moved code blocks in different colors instead of showing them as deleted+added
+    colorMoved = default
+    # Detects when files are renamed or copied, showing cleaner diffs
+    renames = copies
+    # Shows commit history for submodules (external git repos included in your project)
+    submodule = log    
+[fetch]
+    # automatically removes local references to remote branches that have been deleted
+    prune = true
+[rebase]
+    # Automatically organizes fixup/squash commits during interactive rebase
+    # When you create commits with "git commit --fixup" or "--squash", this setting
+    # makes "git rebase -i" automatically move them next to their target commits
+    # and mark them appropriately, saving manual reordering work
+    autosquash = true
+[checkout]
+    # when checking out a branch that exists on multiple remotes, prefer "origin"
+    defaultRemote = origin
+[stash]
+    # shows the actual change swhen listing stashes, not just the stash message
+    showPatch = true
+[pull]
+    # instead of creating merge commits when pulling, this rebases the local change son top of the remote changes for a cleaner history
+    rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

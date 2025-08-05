@@ -1,0 +1,7 @@
+xterm*scrollBar: false
+xterm*background: black
+xterm*foreground: white
+xterm*selectToClipboard: true
+
+! if you do a double click on a line, xterm now automatically selects the whole link
+xterm*charClass: 33:48,35-39:48,42-47:48,58-59:48,61:48,63:48,64:48,91-93:48,95:48,126:48
