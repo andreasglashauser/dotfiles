@@ -18,7 +18,8 @@ install:
 
 	@echo "Creating symlink for Neovim configuration..."
 	mkdir -p $(HOME_DIR)/.config
-	ln -svf $(DOTFILES_DIR)/config/nvim $(HOME_DIR)/.config/nvim
+	rm -f $(HOME_DIR)/.config/nvim
+	ln -sv $(DOTFILES_DIR)/config/nvim $(HOME_DIR)/.config/nvim
 
 	@echo "Installing fonts..."
 	$(MAKE) fonts
