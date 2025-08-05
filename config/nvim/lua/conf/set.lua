@@ -47,25 +47,46 @@ vim.opt.colorcolumn = "100"
 -- set colorscheme
 vim.cmd.colorscheme("slate")
 
--- make background darker like habamax
-vim.api.nvim_set_hl(0, "Normal", { bg = "#1c1c1c" })
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "#1c1c1c" })
+-- Custom theme matching tmux style
+vim.api.nvim_set_hl(0, "Normal", { bg = "#1c1c1c", fg = "#d0d0d0" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "#1c1c1c", fg = "#d0d0d0" })
 
--- make colorcolumn grey like habamax
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#3a3a3a" })
+-- Line numbers with tmux-like colors
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#585858", bg = "#1c1c1c" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#00d7ff", bg = "#1c1c1c", bold = true })
+
+-- Color column
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#262626" })
+
+-- Visual selection
+vim.api.nvim_set_hl(0, "Visual", { bg = "#444444" })
+
+-- Search highlighting
+vim.api.nvim_set_hl(0, "Search", { bg = "#5f8700", fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "IncSearch", { bg = "#d75f00", fg = "#ffffff" })
+
+-- Comments
+vim.api.nvim_set_hl(0, "Comment", { fg = "#808080", italic = true })
 
 -- Global statusline (one bar for all windows)
 vim.o.laststatus = 3
--- Don’t show duplicate “-- INSERT --” since the statusline will show mode
 vim.o.showmode = false
 
+-- Statusline colors matching tmux
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "#262626", fg = "#d0d0d0" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#1c1c1c", fg = "#808080" })
+
+-- Custom statusline with tmux-like styling
 vim.o.statusline = table.concat({
-  " %f",          -- filename
-  " %m%r%h%w",    -- flags: [+] modified, RO, help, preview
-  " %=",          -- right align the rest
-  " %{mode()}",   -- current mode
-  " %y",          -- filetype
-  " %l:%c",       -- line:col
-  " %p%%",        -- percent through file
+  "%#StatusLine#",
+  " %f",                    -- filename
+  " %m%r%h%w",             -- flags
+  "%=",                    -- right align
+  "%#Search#",             -- highlight mode
+  " %{toupper(mode())} ",  -- current mode (uppercase)
+  "%#StatusLine#",         -- back to normal
+  " %y",                   -- filetype
+  " %l:%c ",               -- line:col
+  " %p%% ",                -- percent through file
 })
 
