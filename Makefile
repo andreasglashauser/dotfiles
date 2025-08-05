@@ -1,9 +1,9 @@
 DOTFILES_DIR := $(CURDIR)
 HOME_DIR := $(HOME)
 
-DOTFILES := Xresources gitconfig tmux.conf
+DOTFILES := Xresources gitconfig tmux.conf gitignore
 
-.PHONY: install clean
+.PHONY: install clean fonts
 
 install:
 	@echo "Creating symlinks for dotfiles..."
@@ -20,6 +20,9 @@ install:
 	mkdir -p $(HOME_DIR)/.config
 	ln -svf $(DOTFILES_DIR)/config/nvim $(HOME_DIR)/.config/nvim
 
+	@echo "Installing fonts..."
+	$(MAKE) fonts
+
 	@echo "Done"
 
 clean:
@@ -29,3 +32,12 @@ clean:
 	done
 	rm -v $(HOME_DIR)/.config/nvim
 	rm -v $(HOME_DIR)/.ssh/config
+
+fonts:
+	@echo "Installing JetBrains Mono Nerd Font..."
+	@mkdir -p $(HOME_DIR)/.local/share/fonts
+	@wget -P $(HOME_DIR)/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+	@cd $(HOME_DIR)/.local/share/fonts && unzip -o JetBrainsMono.zip
+	@rm -f $(HOME_DIR)/.local/share/fonts/JetBrainsMono.zip
+	@fc-cache -fv
+	@echo "Font installation complete"

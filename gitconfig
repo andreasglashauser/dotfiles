@@ -26,6 +26,7 @@
     # Line endings: Windows=CRLF, Unix=LF. On commit Git converts CRLF->LF; checkout unchanged.
     # Prevents "line-ending-only" diffs; Windows devs don't need to change anything.
     autocrlf = input
+	excludesfile = /home/andreasg/repos/dotfiles/gitignore
 [gpg]
     format = openpgp
 [commit]
