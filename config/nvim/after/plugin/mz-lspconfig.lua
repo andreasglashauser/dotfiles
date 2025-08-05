@@ -27,11 +27,6 @@ lspconfig.basedpyright.setup {
         pyright = {
             disableOrganizeImports = true,
         },
-        python = {
-            analysis = {
-                ignore = { "*" },
-            },
-        },
     },
 }
 

@@ -8,6 +8,8 @@ vim.cmd [[
 
   Plug 'mbbill/undotree'
 
+  Plug 'lewis6991/gitsigns.nvim'
+
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
 
@@ -17,6 +19,11 @@ vim.cmd [[
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/nvim-cmp'
+
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'mfussenegger/nvim-dap-python'
+  Plug 'rcarriga/nvim-dap-ui'
+  Plug 'nvim-neotest/nvim-nio'
 
   call plug#end()
 ]]
