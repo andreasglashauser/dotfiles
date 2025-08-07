@@ -15,6 +15,7 @@ install:
 	@echo "Creating symlink aliases..."
 	mkdir -p $(HOME_DIR)/.bashrc.d
 	ln -svf $(DOTFILES_DIR)/aliases $(HOME_DIR)/.bashrc.d/aliases
+	ln -svf $(DOTFILES_DIR)/tmux-autostart.sh $(HOME_DIR)/.bashrc.d/tmux-autostart.sh
 
 	@echo "Creating symlink for Neovim configuration..."
 	mkdir -p $(HOME_DIR)/.config
