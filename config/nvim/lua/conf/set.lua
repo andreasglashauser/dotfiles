@@ -90,3 +90,7 @@ vim.o.statusline = table.concat({
   " %p%% ",                -- percent through file
 })
 
+-- Disable matchparen plugin (was causing cursor to jump between brackets in HTML files
+-- after recent config updates - normally this plugin only highlights matching brackets)
+vim.g.loaded_matchparen = 1
+
