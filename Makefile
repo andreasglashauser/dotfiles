@@ -3,7 +3,7 @@ HOME_DIR := $(HOME)
 
 DOTFILES := Xresources gitconfig tmux.conf gitignore
 
-.PHONY: install clean fonts
+.PHONY: install clean fonts fonts-jetbrains-nerd
 
 install:
 	@echo "Creating symlinks for dotfiles..."
@@ -35,11 +35,13 @@ clean:
 	rm -v $(HOME_DIR)/.config/nvim
 	rm -v $(HOME_DIR)/.ssh/config
 
-fonts:
-	@echo "Installing JetBrains Mono Nerd Font..."
-	@mkdir -p $(HOME_DIR)/.local/share/fonts
-	@curl -L -o $(HOME_DIR)/.local/share/fonts/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
-	@cd $(HOME_DIR)/.local/share/fonts && unzip -o JetBrainsMono.zip
-	@rm -f $(HOME_DIR)/.local/share/fonts/JetBrainsMono.zip
+fonts: fonts-jetbrains-nerd
 	@fc-cache -fv
 	@echo "Font installation complete"
+
+fonts-jetbrains-nerd:
+	@echo "Installing JetBrains Mono Nerd Font (fallback glyphs)..."
+	@mkdir -p $(HOME_DIR)/.local/share/fonts
+	@curl -L -o $(HOME_DIR)/.local/share/fonts/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+	@cd $(HOME_DIR)/.local/share/fonts && unzip -o JetBrainsMono.zip >/dev/null
+	@rm -f $(HOME_DIR)/.local/share/fonts/JetBrainsMono.zip
