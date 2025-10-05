@@ -25,5 +25,8 @@ vim.cmd [[
   Plug 'rcarriga/nvim-dap-ui'
   Plug 'nvim-neotest/nvim-nio'
 
+  " C# support (OmniSharp via vim-plug, not Mason)
+  Plug 'OmniSharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
+
   call plug#end()
 ]]

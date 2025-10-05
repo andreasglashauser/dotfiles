@@ -1,7 +1,5 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local lspconfig =  require('lspconfig')
-
 local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -30,21 +28,25 @@ local on_attach = function(client, bufnr)
 --    end
 end
 
+local function setup(server, config)
+    local merged = vim.tbl_deep_extend('force', {
+        capabilities = capabilities,
+        on_attach = on_attach,
+    }, config or {})
 
-lspconfig.basedpyright.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+    vim.lsp.config(server, merged)
+    vim.lsp.enable(server)
+end
+
+setup('basedpyright', {
     settings = {
         pyright = {
             disableOrganizeImports = true,
         },
     },
-}
+})
 
-lspconfig.ruff.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
+setup('ruff', {})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
@@ -58,13 +60,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       client.server_capabilities.hoverProvider = false
     end
   end,
-  desc = 'LSP: Disable hover capability from Ruff',
+    desc = 'LSP: Disable hover capability from Ruff',
 })
 
 
-lspconfig.eslint.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
+setup('eslint', {
     -- Allow using globally installed eslint when a local one is missing
     cmd = { "bash", "-lc", "NODE_PATH=$(npm root -g) vscode-eslint-language-server --stdio" },
     settings = {
@@ -72,10 +72,6 @@ lspconfig.eslint.setup {
             { mode = "auto" }
         }
     }
-}
+})
 
-lspconfig.ts_ls.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-
+setup('ts_ls', {})
