@@ -1,0 +1,44 @@
+Host dev
+    HostName dev.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host sales
+    HostName sales.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host gt
+    HostName ganditest.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host tg
+    HostName testgandi.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host gandi
+    HostName gandi.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host gandit
+    HostName gandit.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host g-t
+    HostName gandi-test.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host g
+    HostName gandit.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host tgandi
+    HostName tgandi.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes

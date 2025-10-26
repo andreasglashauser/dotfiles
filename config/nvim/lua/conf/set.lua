@@ -94,3 +94,10 @@ vim.o.statusline = table.concat({
 -- after recent config updates - normally this plugin only highlights matching brackets)
 vim.g.loaded_matchparen = 1
 
+
+vim.diagnostic.config({
+  virtual_text = { severity = { min = vim.diagnostic.severity.HINT } },
+  signs       = { severity = { min = vim.diagnostic.severity.HINT } },
+  underline   = { severity = { min = vim.diagnostic.severity.HINT } },
+  severity_sort = true,
+})

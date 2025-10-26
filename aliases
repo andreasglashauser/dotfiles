@@ -3,3 +3,5 @@ alias ...="cd ../.."
 alias ....="cd ../../../"
 alias .....="cd ../../../../"
 alias gptoss="/home/andreasg/repos/llama.cpp/build/bin/llama-cli -m /home/andreasg/repos/gpt-oss-20b/gpt-oss-20B-BF16.gguf"
+
+alias git-rm-orphaned-branches="git fetch -p && git branch -vv | grep gone | cut -d' ' -f 3 | grep . | xargs git branch -D"

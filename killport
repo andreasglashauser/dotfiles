@@ -1,0 +1,3 @@
+killport(){ 
+kill -9 $(fuser -n tcp $1 2> /dev/null);
+}

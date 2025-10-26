@@ -1,0 +1,7 @@
+# Make Neovim Mason-installed tools (e.g., uv) available in the shell
+_mason_bin="$HOME/.local/share/nvim/mason/bin"
+if [ -d "$_mason_bin" ] && [[ ":$PATH:" != *":$_mason_bin:"* ]]; then
+  PATH="$_mason_bin:$PATH"   # prepend so Mason's uv is used if no system uv
+fi
+export PATH
+

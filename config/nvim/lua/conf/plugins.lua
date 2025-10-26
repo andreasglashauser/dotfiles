@@ -10,11 +10,11 @@ vim.cmd [[
 
   Plug 'lewis6991/gitsigns.nvim'
 
+  Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/mason.nvim'
   Plug 'williamboman/mason-lspconfig.nvim'
 
 
-  Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
@@ -22,11 +22,15 @@ vim.cmd [[
 
   Plug 'mfussenegger/nvim-dap'
   Plug 'mfussenegger/nvim-dap-python'
-  Plug 'rcarriga/nvim-dap-ui'
   Plug 'nvim-neotest/nvim-nio'
+  Plug 'rcarriga/nvim-dap-ui'
 
-  " C# support (OmniSharp via vim-plug, not Mason)
-  Plug 'OmniSharp/omnisharp-vim', { 'do': ':OmniSharpInstall' }
+  Plug 'mxsdev/nvim-dap-vscode-js'
+
+  Plug 'stevearc/conform.nvim'
+
+
+  Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 
   call plug#end()
 ]]

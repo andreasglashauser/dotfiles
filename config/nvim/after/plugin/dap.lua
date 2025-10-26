@@ -1,39 +1,26 @@
--- This will automatically configure dap for python.
--- It will try to find the python interpreter in your virtual environment.
-require('dap-python').setup()
-
--- Setup dap-ui
-local dapui = require("dapui")
-dapui.setup()
-
--- Auto-open/close dap-ui when debugging starts/ends
-local dap = require('dap')
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+local ok_dap, dap = pcall(require, "dap")
+if not ok_dap then return end
+local ok_ui, dapui = pcall(require, "dapui")
+if ok_ui then
+  dapui.setup()
+  dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+  dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+  dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
 end
 
--- Keymaps for debugging
-vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint, { desc = "DAP: Toggle breakpoint" })
-vim.keymap.set('n', '<leader>dc', require('dap').continue, { desc = "DAP: Continue" })
-vim.keymap.set('n', '<leader>dso', require('dap').step_over, { desc = "DAP: Step Over" })
-vim.keymap.set('n', '<leader>dsi', require('dap').step_into, { desc = "DAP: Step Into" })
-vim.keymap.set('n', '<leader>dsu', require('dap').step_out, { desc = "DAP: Step Out" })
-vim.keymap.set('n', '<leader>du', dapui.toggle, { desc = "DAP UI: Toggle" })
+local map = function(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = "DAP: " .. desc }) end
+map("<leader>db", dap.toggle_breakpoint, "Toggle breakpoint")
+map("<leader>dB", function()
+  dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, "Conditional breakpoint")
+map("<leader>dl", function()
+  dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end, "Log point")
 
--- Variable inspection
-local dap = require('dap')
-local widgets = require('dap.ui.widgets')
-
--- 1) Keybinding: show value under cursor
-vim.keymap.set({'n','v'}, '<leader>dv', function()
-  if dap.session() then
-    widgets.hover()
-  end
-end, { desc = "Show value (DAP if debugging)", silent = true })
-
+map("<leader>dc", dap.continue, "Continue")
+map("<leader>dn", dap.step_over, "Step over")
+map("<leader>di", dap.step_into, "Step into")
+map("<leader>do", dap.step_out, "Step out")
+map("<leader>dr", dap.restart, "Restart")
+map("<leader>dR", dap.repl.toggle, "REPL")
+if ok_ui then map("<leader>du", dapui.toggle, "Toggle UI") end
