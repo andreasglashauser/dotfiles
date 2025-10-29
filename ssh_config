@@ -48,6 +48,16 @@ Host m
     User ag
     ForwardAgent yes
 
+Host git
+    HostName git.andreasglashauser.com
+    User ag
+    ForwardAgent yes
+
+Host www
+    HostName www.andreasglashauser.com
+    User ag
+    ForwardAgent yes
+
 Host f 
     HostName mail.forwardly.de
     User ag
@@ -57,3 +67,4 @@ Host powerhouse
     HostName powerhouse1.csp.local
     User andreasg
     ForwardAgent yes
+
