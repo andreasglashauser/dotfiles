@@ -25,8 +25,6 @@ vim.cmd [[
   Plug 'nvim-neotest/nvim-nio'
   Plug 'rcarriga/nvim-dap-ui'
 
-  Plug 'mxsdev/nvim-dap-vscode-js'
-
   Plug 'stevearc/conform.nvim'
 
 

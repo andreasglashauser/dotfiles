@@ -23,9 +23,6 @@ install:
 	rm -f $(HOME_DIR)/.config/nvim
 	ln -sv $(DOTFILES_DIR)/config/nvim $(HOME_DIR)/.config/nvim
 
-	@echo "Installing vim-plug..."
-	sh -c 'curl -fLo $(HOME)/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
 	@echo "Creating symlink for ssh configuration..."
 	mkdir -p $(HOME_DIR)/.ssh
 	rm -f $(HOME_DIR)/.ssh/ssh_config
@@ -45,6 +42,10 @@ csp:
 	@echo "Creating directories for git projects for work at CSP..."
 	mkdir -p $(HOME_DIR)/repos/csp
 	ln -svf $(DOTFILES_DIR)/gitconfig-csp $(HOME_DIR)/repos/csp/.gitconfig; \
+
+vimplug:
+	@echo "Installing vim-plug..."
+	sh -c 'curl -fLo $(HOME)/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 FONT_NAME := JetBrainsMono
 FONT_ZIP  := $(FONT_NAME).zip
