@@ -42,3 +42,18 @@ Host tgandi
     HostName tgandi.pgweb.csp-pg.de
     User root
     ForwardAgent yes
+
+Host m
+    HostName mail.andreasglashauser.com
+    User ag
+    ForwardAgent yes
+
+Host f 
+    HostName mail.forwardly.de
+    User ag
+    ForwardAgent yes
+
+Host powerhouse 
+    HostName powerhouse1.csp.local
+    User andreasg
+    ForwardAgent yes
