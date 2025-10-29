@@ -10,13 +10,13 @@ install:
 		ln -svf $(DOTFILES_DIR)/$$file $(HOME_DIR)/.$$file; \
 	done
 
-
 	@echo "Creating symlinks for bashrc..."
 	mkdir -p $(HOME_DIR)/.bashrc.d
 	ln -svf $(DOTFILES_DIR)/aliases $(HOME_DIR)/.bashrc.d/aliases
 	ln -svf $(DOTFILES_DIR)/tmux-autostart.sh $(HOME_DIR)/.bashrc.d/tmux-autostart.sh
 	ln -svf $(DOTFILES_DIR)/killport $(HOME_DIR)/.bashrc.d/killport
 	ln -svf $(DOTFILES_DIR)/mason-bin $(HOME_DIR)/.bashrc.d/mason-bin
+	ln -svf $(DOTFILES_DIR)/llamacpp-bin $(HOME_DIR)/.bashrc.d/llamacpp-bin
 
 	@echo "Creating symlink for Neovim configuration..."
 	mkdir -p $(HOME_DIR)/.config
@@ -66,3 +66,10 @@ fonts:
 	echo ">> Refreshing font cache"; \
 	fc-cache -fv >/dev/null; \
 	echo ">> Done. Set your terminal font to a *Nerd Font* variant of $(FONT_NAME)."
+
+llamacpp:
+	@echo "Cloning llamacpp..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/ggml-org/llama.cpp.git ~/repos/llama.cpp'
+	sh -c 'cd ~/repos/llama.cpp/ && cmake -B build && cmake --build build --config Release'
+

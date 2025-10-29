@@ -27,6 +27,7 @@ vim.cmd [[
 
   Plug 'stevearc/conform.nvim'
 
+  Plug 'ggml-org/llama.vim'
 
   Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 

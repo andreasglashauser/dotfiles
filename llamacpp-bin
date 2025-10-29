@@ -1,0 +1,5 @@
+_llamacpp_bin="$HOME/repos/llama.cpp/build/bin"
+if [ -d "$_llamacpp_bin" ] && [[ ":$PATH:" != *":$_llamacpp_bin:"* ]]; then
+  PATH="$_llamacpp_bin:$PATH" 
+fi
+export PATH

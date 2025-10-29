@@ -1,0 +1,12 @@
+[Unit]
+Description=Llama Server
+After=network.target
+
+[Service]
+ExecStart=llama-server -m /path/to/your/model.gguf --port 8080
+Restart=on-failure
+User=your_username  # Replace with your system user
+WorkingDirectory=/path/to/llama/cpp  # Optional
+
+[Install]
+WantedBy=multi-user.target
