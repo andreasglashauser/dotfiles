@@ -7,5 +7,7 @@ require("mason-lspconfig").setup {
     , "ruff"
     , "omnisharp"
     , "texlab"
+    , "cssls"
+    , "lua_ls"
   },
 }

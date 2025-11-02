@@ -19,6 +19,9 @@ install:
 	ln -svf $(DOTFILES_DIR)/llamacpp-bin $(HOME_DIR)/.bashrc.d/llamacpp-bin
 	ln -svf $(DOTFILES_DIR)/neovim-bin $(HOME_DIR)/.bashrc.d/neovim-bin
 	ln -svf $(DOTFILES_DIR)/tmux-bin $(HOME_DIR)/.bashrc.d/tmux-bin
+	mkdir -p $(HOME_DIR)/.local/shims
+	ln -sf $(HOME)/repos/tmux/tmux $(HOME)/.local/shims/tmux
+	ln -svf $(DOTFILES_DIR)/bun-bin $(HOME_DIR)/.bashrc.d/bun-bin
 
 	@echo "Creating symlink for Neovim configuration..."
 	mkdir -p $(HOME_DIR)/.config
@@ -44,6 +47,10 @@ csp:
 	@echo "Creating directories for git projects for work at CSP..."
 	mkdir -p $(HOME_DIR)/repos/csp
 	ln -svf $(DOTFILES_DIR)/gitconfig-csp $(HOME_DIR)/repos/csp/.gitconfig; \
+
+npm:
+	@echo "Configuring global npm installs to user-space..."
+	npm set prefix $(HOME)/.local
 
 vimplug:
 	@echo "Installing vim-plug..."
@@ -94,11 +101,11 @@ tmux:
 	@echo "Cloning tmux..."
 	mkdir -p ~/repos/
 	sh -c 'git clone https://github.com/tmux/tmux ~/repos/tmux'
-	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config)..."
+	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config, bison-devel, libevent-devel)..."
 	sh -c 'cd ~/repos/tmux/ && sh autogen.sh && ./configure && make'
 
 update-tmux:
-	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config)..."
+	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config, bison-devel, libevent-devel)..."
 	sh -c 'cd ~/repos/tmux/ && git pull && sh autogen.sh && ./configure && make'
 
 ghostty:
@@ -106,8 +113,31 @@ ghostty:
 	mkdir -p ~/repos/
 	sh -c 'git clone https://github.com/ghostty-org/ghostty ~/repos/ghostty'
 	@echo "Building ghostty, make sure necessary dev tools are installed (gtk4-devel, gtk4-layer-shell-devel, zig, libadwaita-devel, gettext)..."
-	sh -c 'cd ~/repos/ghostty/ && zig build -p $HOME/.local -Doptimize=ReleaseFast'
+	sh -c 'cd ~/repos/ghostty/ && zig build -p $$HOME/.local -Doptimize=ReleaseFast'
 
 update-ghostty:
 	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config)..."
-	sh -c 'cd ~/repos/ghostty/ && git pull && zig build -p $HOME/.local -Doptimize=ReleaseFast'
+	sh -c 'cd ~/repos/ghostty/ && git pull && zig build -p $$HOME/.local -Doptimize=ReleaseFast'
+
+zig: 
+	@echo "Cloning zig..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/ziglang/zig ~/repos/zig'
+	@echo "Building zig, make sure necessary dev tools are installed (cmake)..."
+	sh -c 'cd ~/repos/zig/ && mkdir build && cd build && cmake .. && make install'
+
+update-zig:
+	@echo "Updating zig..."
+	sh -c 'cd ~/repos/zig/ && git pull && mkdir build && cd build && cmake .. && make install'
+
+bun: 
+	@echo "Installing bun..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/oven-sh/bun ~/repos/bun'
+	@echo "Buildung bun..."
+	npm install -g bun
+	sh -c "cd ~/repos/bun/ && bun run build:release"
+
+update-bun:
+	@echo "Updating bun..."
+	sh -c "cd ~/repos/bun/ && git pull && bun run build:release"

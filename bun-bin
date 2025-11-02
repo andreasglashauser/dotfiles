@@ -1,0 +1,5 @@
+_bun_bin="$HOME/repos/bun/build/release"
+if [ -d "$_bun_bin" ] && [[ ":$PATH:" != *":$_bun_bin:"* ]]; then
+  PATH="$_bun_bin:$PATH" 
+fi
+export PATH

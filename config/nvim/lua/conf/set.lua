@@ -76,18 +76,17 @@ vim.o.showmode = false
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "#262626", fg = "#d0d0d0" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#1c1c1c", fg = "#808080" })
 
--- Custom statusline with tmux-like styling
 vim.o.statusline = table.concat({
-  "%#StatusLine#",
-  " %f",                    -- filename
-  " %m%r%h%w",             -- flags
-  "%=",                    -- right align
-  "%#Search#",             -- highlight mode
-  " %{toupper(mode())} ",  -- current mode (uppercase)
-  "%#StatusLine#",         -- back to normal
-  " %y",                   -- filetype
-  " %l:%c ",               -- line:col
-  " %p%% ",                -- percent through file
+    "%#StatusLine#",
+    " %f",                -- filename
+    " %m%r%h%w",          -- flags
+    "%=",                 -- right align
+    "%#Search#",          -- highlight mode
+    " %{toupper(mode())} ", -- current mode (uppercase)
+    "%#StatusLine#",      -- back to normal
+    " %y",                -- filetype
+    " %l:%c ",            -- line:col
+    " %p%% ",             -- percent through file
 })
 
 -- Disable matchparen plugin (was causing cursor to jump between brackets in HTML files
@@ -96,8 +95,9 @@ vim.g.loaded_matchparen = 1
 
 
 vim.diagnostic.config({
-  virtual_text = { severity = { min = vim.diagnostic.severity.HINT } },
-  signs       = { severity = { min = vim.diagnostic.severity.HINT } },
-  underline   = { severity = { min = vim.diagnostic.severity.HINT } },
-  severity_sort = true,
+    --virtual_text = { severity = { min = vim.diagnostic.severity.HINT } },
+    signs         = { severity = { min = vim.diagnostic.severity.HINT } },
+    underline     = { severity = { min = vim.diagnostic.severity.HINT } },
+    severity_sort = true,
+    virtual_lines = true,
 })
