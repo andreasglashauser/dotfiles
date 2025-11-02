@@ -124,11 +124,11 @@ zig:
 	mkdir -p ~/repos/
 	sh -c 'git clone https://github.com/ziglang/zig ~/repos/zig'
 	@echo "Building zig, make sure necessary dev tools are installed (cmake)..."
-	sh -c 'cd ~/repos/zig/ && mkdir build && cd build && cmake .. && make install'
+	sh -c 'cd ~/repos/zig/ && rm -rf build && mkdir build && cd build && cmake .. && make install'
 
 update-zig:
 	@echo "Updating zig..."
-	sh -c 'cd ~/repos/zig/ && git pull && mkdir build && cd build && cmake .. && make install'
+	sh -c 'cd ~/repos/zig/ && rm -rf build && git pull && mkdir build && cd build && cmake .. && make install'
 
 bun: 
 	@echo "Installing bun..."
