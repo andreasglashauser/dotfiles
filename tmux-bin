@@ -1,0 +1,5 @@
+_tmux_bin="$HOME/repos/tmux/build/bin"
+if [ -d "$_tmux_bin" ] && [[ ":$PATH:" != *":$_tmux_bin:"* ]]; then
+  PATH="$_tmux_bin:$PATH" 
+fi
+export PATH

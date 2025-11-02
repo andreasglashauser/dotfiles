@@ -1,0 +1,5 @@
+_ghostty_bin="$HOME/repos/ghostty/build/bin"
+if [ -d "$_ghostty_bin" ] && [[ ":$PATH:" != *":$_ghostty_bin:"* ]]; then
+  PATH="$_ghostty_bin:$PATH" 
+fi
+export PATH

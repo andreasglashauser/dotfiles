@@ -1,0 +1,5 @@
+_neovim_bin="$HOME/repos/neovim/build/bin"
+if [ -d "$_neovim_bin" ] && [[ ":$PATH:" != *":$_neovim_bin:"* ]]; then
+  PATH="$_neovim_bin:$PATH" 
+fi
+export PATH

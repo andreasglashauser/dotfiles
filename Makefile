@@ -17,6 +17,8 @@ install:
 	ln -svf $(DOTFILES_DIR)/killport $(HOME_DIR)/.bashrc.d/killport
 	ln -svf $(DOTFILES_DIR)/mason-bin $(HOME_DIR)/.bashrc.d/mason-bin
 	ln -svf $(DOTFILES_DIR)/llamacpp-bin $(HOME_DIR)/.bashrc.d/llamacpp-bin
+	ln -svf $(DOTFILES_DIR)/neovim-bin $(HOME_DIR)/.bashrc.d/neovim-bin
+	ln -svf $(DOTFILES_DIR)/tmux-bin $(HOME_DIR)/.bashrc.d/tmux-bin
 
 	@echo "Creating symlink for Neovim configuration..."
 	mkdir -p $(HOME_DIR)/.config
@@ -73,3 +75,39 @@ llamacpp:
 	sh -c 'git clone https://github.com/ggml-org/llama.cpp.git ~/repos/llama.cpp'
 	sh -c 'cd ~/repos/llama.cpp/ && cmake -B build && cmake --build build --config Release'
 
+update-llamacpp:
+	@echo "Building llamacpp..."
+	sh -c 'cd ~/repos/llama.cpp/ && git pull && cmake -B build && cmake --build build --config Release'
+
+neovim:
+	@echo "Cloning neovim..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/neovim/neovim ~/repos/neovim'
+	@echo "Building neovim, make sure necessary dev tools are installed (ninja-build, cmake, gcc, make, unzip, gettext, curl)..."
+	sh -c 'cd ~/repos/neovim/ && make CMAKE_BUILD_TYPE=Release'
+
+update-neovim:
+	@echo "Building neovim, make sure necessary dev tools are installed (ninja-build, cmake, gcc, make, unzip, gettext, curl)..."
+	sh -c 'cd ~/repos/neovim/ && git pull && make CMAKE_BUILD_TYPE=Release'
+
+tmux:
+	@echo "Cloning tmux..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/tmux/tmux ~/repos/tmux'
+	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config)..."
+	sh -c 'cd ~/repos/tmux/ && sh autogen.sh && ./configure && make'
+
+update-tmux:
+	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config)..."
+	sh -c 'cd ~/repos/tmux/ && git pull && sh autogen.sh && ./configure && make'
+
+ghostty:
+	@echo "Cloning ghostty..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/ghostty-org/ghostty ~/repos/ghostty'
+	@echo "Building ghostty, make sure necessary dev tools are installed (gtk4-devel, gtk4-layer-shell-devel, zig, libadwaita-devel, gettext)..."
+	sh -c 'cd ~/repos/ghostty/ && zig build -p $HOME/.local -Doptimize=ReleaseFast'
+
+update-ghostty:
+	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config)..."
+	sh -c 'cd ~/repos/ghostty/ && git pull && zig build -p $HOME/.local -Doptimize=ReleaseFast'
