@@ -31,5 +31,7 @@ vim.cmd [[
 
   Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 
+  Plug 'nvim-orgmode/orgmode'
+
   call plug#end()
 ]]

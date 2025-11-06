@@ -23,6 +23,16 @@ Host gandi
     User root
     ForwardAgent yes
 
+Host gandi1
+    HostName gandi1.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host gandi2
+    HostName gandi2.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
 Host gandit
     HostName gandit.pgweb.csp-pg.de
     User root

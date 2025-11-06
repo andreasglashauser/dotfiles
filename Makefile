@@ -94,8 +94,10 @@ neovim:
 	sh -c 'cd ~/repos/neovim/ && make CMAKE_BUILD_TYPE=Release'
 
 update-neovim:
-	@echo "Building neovim, make sure necessary dev tools are installed (ninja-build, cmake, gcc, make, unzip, gettext, curl)..."
-	sh -c 'cd ~/repos/neovim/ && git pull && make CMAKE_BUILD_TYPE=Release'
+	@echo "Building and installing neovim to ~/.local/bin..."
+	sh -c 'cd ~/repos/neovim/ && git pull && rm -rf build && \
+		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$$HOME/.local" && \
+		make install'
 
 tmux:
 	@echo "Cloning tmux..."
@@ -105,8 +107,10 @@ tmux:
 	sh -c 'cd ~/repos/tmux/ && sh autogen.sh && ./configure && make'
 
 update-tmux:
-	@echo "Building tmux, make sure necessary dev tools are installed (autoconf, automake, pkg-config, bison-devel, libevent-devel)..."
-	sh -c 'cd ~/repos/tmux/ && git pull && sh autogen.sh && ./configure && make'
+	@echo "Building and installing tmux to ~/.local/bin..."
+	sh -c 'cd ~/repos/tmux/ && git pull && sh autogen.sh && \
+		./configure --prefix=$$HOME/.local && \
+		make && make install'
 
 ghostty:
 	@echo "Cloning ghostty..."
