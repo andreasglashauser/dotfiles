@@ -2,7 +2,7 @@ local ok, registry = pcall(require, "mason-registry")
 if not ok then return end
 
 local tools = {
-  "prettierd", 
+  "prettierd",
   "csharpier",
   "ruff",
   "debugpy",
@@ -13,6 +13,7 @@ local tools = {
   "bash-language-server",
   "shellcheck",
   "shfmt",
+  "glow",
 }
 
 local function ensure_installed()

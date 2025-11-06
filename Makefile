@@ -80,7 +80,7 @@ llamacpp:
 	@echo "Cloning llamacpp..."
 	mkdir -p ~/repos/
 	sh -c 'git clone https://github.com/ggml-org/llama.cpp.git ~/repos/llama.cpp'
-	sh -c 'cd ~/repos/llama.cpp/ && cmake -B build && cmake --build build --config Release'
+	sh -c 'cd ~/repos/llama.cpp/ && cmake -B build -DGGML_CUDA=ON -DGGML_VULKAN=ON && cmake --build build --config Release'
 
 update-llamacpp:
 	@echo "Building llamacpp..."
@@ -145,3 +145,17 @@ bun:
 update-bun:
 	@echo "Updating bun..."
 	sh -c "cd ~/repos/bun/ && git pull && bun run build:release"
+
+trivy:
+	@echo "Cloning trivy..."
+	mkdir -p ~/repos/
+	if [ ! -d "$$HOME/repos/trivy" ]; then \
+		git clone https://github.com/aquasecurity/trivy $$HOME/repos/trivy; \
+	fi
+	@echo "Building trivy with GOTOOLCHAIN=auto, installing to ~/.local/bin..."
+	mkdir -p $$HOME/.local/bin
+	sh -c 'cd $$HOME/repos/trivy && GOEXPERIMENT=jsonv2 GOTOOLCHAIN=auto go build -o $$HOME/.local/bin/trivy ./cmd/trivy'
+
+update-trivy:
+	@echo "Updating trivy and rebuilding..."
+	sh -c 'cd $$HOME/repos/trivy && git pull && GOEXPERIMENT=jsonv2 GOTOOLCHAIN=auto go build -o $$HOME/.local/bin/trivy ./cmd/trivy'
