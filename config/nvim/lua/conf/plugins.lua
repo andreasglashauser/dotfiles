@@ -33,5 +33,8 @@ vim.cmd [[
 
   Plug 'nvim-orgmode/orgmode'
 
+  Plug 'nvim-tree/nvim-tree.lua'
+  Plug 'nvim-tree/nvim-web-devicons'
+
   call plug#end()
 ]]

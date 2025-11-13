@@ -86,6 +86,18 @@ update-llamacpp:
 	@echo "Building llamacpp..."
 	sh -c 'cd ~/repos/llama.cpp/ && git pull && cmake -B build && cmake --build build --config Release'
 
+
+mergiraf:
+	@echo "Cloning mergiraf..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://codeberg.org/mergiraf/mergiraf.git ~/repos/mergiraf'
+	@echo "Building mergiraf, make sure cargo is installed..."
+	sh -c 'cd ~/repos/mergiraf && cargo install --path . --root $$HOME/.local'
+
+update-mergiraf:
+	@echo "Building and installing mergiraf to $$HOME/.local/..."
+	sh -c 'cd ~/repos/mergiraf && cargo install --path . --root $$HOME/.local --force'
+
 neovim:
 	@echo "Cloning neovim..."
 	mkdir -p ~/repos/
