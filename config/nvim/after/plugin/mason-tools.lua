@@ -14,6 +14,7 @@ local tools = {
   "shellcheck",
   "shfmt",
   "glow",
+  "typstyle",
 }
 
 local function ensure_installed()

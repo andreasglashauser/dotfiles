@@ -60,6 +60,8 @@
     enable = true
 [includeIf "gitdir:~/repos/csp/"]
     path = ~/repos/csp/.gitconfig
+[includeIf "gitdir:~/repos/thd/"]
+    path = ~/repos/thd/.gitconfig
 [column]
 	ui = auto
 [branch]

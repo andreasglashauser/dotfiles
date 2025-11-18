@@ -98,6 +98,17 @@ update-mergiraf:
 	@echo "Building and installing mergiraf to $$HOME/.local/..."
 	sh -c 'cd ~/repos/mergiraf && cargo install --path . --root $$HOME/.local --force'
 
+typst:
+	@echo "Cloning typst..."
+	mkdir -p ~/repos/
+	sh -c 'git clone https://github.com/typst/typst ~/repos/typst'
+	@echo "Building typst, make sure cargo is installed..."
+	sh -c 'cd ~/repos/typst && cargo install --path crates/typst-cli --root $$HOME/.local --force'
+
+update-typst:
+	@echo "Building typst, make sure cargo is installed..."
+	sh -c 'cd ~/repos/typst && cargo install --path crates/typst-cli --root $$HOME/.local --force'
+
 neovim:
 	@echo "Cloning neovim..."
 	mkdir -p ~/repos/

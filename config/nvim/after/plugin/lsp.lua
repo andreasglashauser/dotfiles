@@ -6,6 +6,18 @@ local lsps = {
     ruff      = {},
     texlab    = {},
     omnisharp = {},
+    tinymist  = function()
+        return {
+            cmd = { "tinymist" },
+            filetypes = { "typst" },
+            settings = {
+                formatterMode = "typstyle",
+                exportPdf = "onType",
+                semanticTokens = "disable",
+                outputPath = '$root/target/',
+            }
+        }
+    end,
     bashls    = {},
     cssls     = {},
     lua_ls    = function()

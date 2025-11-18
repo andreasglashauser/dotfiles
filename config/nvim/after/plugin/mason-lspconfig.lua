@@ -9,5 +9,6 @@ require("mason-lspconfig").setup {
     , "texlab"
     , "cssls"
     , "lua_ls"
+    , "tinymist"
   },
 }

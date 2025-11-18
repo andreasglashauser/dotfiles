@@ -11,5 +11,6 @@ require("conform").setup({
     yaml = { "prettierd" },
     python = { "ruff_format" },
     bash = { "shfmt" },
+    typst = { "typstyle" },
   },
 })
