@@ -20,6 +20,7 @@ vim.g.llama_config = {
   keymap_accept_full = '<Tab>',
   keymap_accept_line = '<S-Tab>',
   keymap_accept_word = '<C-B>',
-  enable_at_startup = true
+  enable_at_startup = false
+  --enable_at_startup = true
 }
 
