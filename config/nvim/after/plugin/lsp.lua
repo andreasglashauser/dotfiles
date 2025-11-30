@@ -6,6 +6,7 @@ local lsps = {
     ruff      = {},
     texlab    = {},
     omnisharp = {},
+    ty        = {},
     tinymist  = function()
         return {
             cmd = { "tinymist" },
