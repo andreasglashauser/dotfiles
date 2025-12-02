@@ -43,6 +43,16 @@ Host g-t
     User root
     ForwardAgent yes
 
+Host lifefitness
+    HostName lifefitness.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
+Host mr
+    HostName mr.pgweb.csp-pg.de
+    User root
+    ForwardAgent yes
+
 Host g
     HostName gandit.pgweb.csp-pg.de
     User root
