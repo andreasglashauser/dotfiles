@@ -1,7 +1,7 @@
 DOTFILES_DIR := $(CURDIR)
 HOME_DIR := $(HOME)
 
-DOTFILES := Xresources gitconfig tmux.conf gitignore
+DOTFILES := Xresources gitconfig tmux.conf gitignore ideavimrc
 
 install:
 	@echo "Creating symlinks for dotfiles..."
@@ -182,3 +182,18 @@ trivy:
 update-trivy:
 	@echo "Updating trivy and rebuilding..."
 	sh -c 'cd $$HOME/repos/trivy && git pull && GOEXPERIMENT=jsonv2 GOTOOLCHAIN=auto go build -o $$HOME/.local/bin/trivy ./cmd/trivy'
+
+
+syncthing:
+	@echo "Cloning syncthing..."
+	mkdir -p ~/repos/
+	if [ ! -d "$$HOME/repos/syncthing" ]; then \
+		git clone https://github.com/syncthing/syncthing.git $$HOME/repos/syncthing; \
+	fi
+	@echo "Building syncthing with go, installing to ~/.local/bin..."
+	mkdir -p $$HOME/.local/bin
+	sh -c "cd $$HOME/repos/syncthing && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"
+
+update-syncthing:
+	@echo "Updating syncthing and rebuilding..."
+	sh -c "cd $$HOME/repos/syncthing && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"

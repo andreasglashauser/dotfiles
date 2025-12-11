@@ -61,3 +61,4 @@ for name, override in pairs(lsps) do
 end
 
 vim.lsp.inline_completion.enable(true)
+vim.o.autocomplete=True

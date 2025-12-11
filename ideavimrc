@@ -1,0 +1,32 @@
+let mapleader = " "
+
+set number
+set relativenumber
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
+set ignorecase
+set smartcase
+set incsearch
+set scrolloff=100000
+
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <Space>h :noh<CR>
+
+nnoremap <leader>rn :action RenameElement<CR>
+vnoremap <leader>rn :action RenameElement<CR>
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gD :action GotoTypeDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap K :action QuickJavaDoc<CR>
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+nnoremap <leader>f :action ReformatCode<CR>
+nnoremap <leader>oi :action OptimizeImports<CR>
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap ]d :action GotoNextError<CR>
