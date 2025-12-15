@@ -35,7 +35,7 @@
     # Detects when files are renamed or copied, showing cleaner diffs
     renames = copies
     # Shows commit history for submodules (external git repos included in your project)
-    submodule = log    
+    submodule = log
 [fetch]
     # automatically removes local references to remote branches that have been deleted
     prune = true
@@ -59,6 +59,8 @@
 [rerere]
     enable = true
 [includeIf "gitdir:~/repos/csp/"]
+    path = ~/repos/csp/.gitconfig
+[includeIf "gitdir:~/repos/dotfiles"]
     path = ~/repos/csp/.gitconfig
 [includeIf "gitdir:~/repos/thd/"]
     path = ~/repos/thd/.gitconfig

@@ -20,7 +20,7 @@ install:
 	ln -svf $(DOTFILES_DIR)/neovim-bin $(HOME_DIR)/.bashrc.d/neovim-bin
 	ln -svf $(DOTFILES_DIR)/tmux-bin $(HOME_DIR)/.bashrc.d/tmux-bin
 	mkdir -p $(HOME_DIR)/.local/shims
-	ln -sf $(HOME)/repos/tmux/tmux $(HOME)/.local/shims/tmux
+	ln -sf $(DOTFILES_DIR)/tmux/tmux $(HOME)/.local/shims/tmux
 	ln -svf $(DOTFILES_DIR)/bun-bin $(HOME_DIR)/.bashrc.d/bun-bin
 
 	@echo "Creating symlink for Neovim configuration..."
@@ -193,7 +193,20 @@ syncthing:
 	@echo "Building syncthing with go, installing to ~/.local/bin..."
 	mkdir -p $$HOME/.local/bin
 	sh -c "cd $$HOME/repos/syncthing && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"
+	install -Dm755 "$$HOME/repos/syncthing/bin/syncthing" "$$HOME/.local/bin/syncthing"
+	mkdir -p ~/.config/systemd/user
+	cd ~/repos/dotfiles 
+	cp -f syncthing.service ~/.config/systemd/user/
+	systemctl --user daemon-reload
+	systemctl --user enable syncthing.service
+
+
 
 update-syncthing:
 	@echo "Updating syncthing and rebuilding..."
 	sh -c "cd $$HOME/repos/syncthing && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"
+	install -Dm755 "$$HOME/repos/syncthing/bin/syncthing" "$$HOME/.local/bin/syncthing"
+	cd ~/repos/dotfiles 
+	cp -f syncthing.service ~/.config/systemd/user/
+	systemctl --user daemon-reload
+	systemctl --user enable syncthing.service

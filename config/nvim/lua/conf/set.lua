@@ -101,3 +101,38 @@ vim.diagnostic.config({
     severity_sort = true,
     virtual_lines = true,
 })
+
+-- ==========================================================================
+-- Highlights trailing spaces/tabs in dark red
+-- Stops highlighting the current line while you are typing
+-- at the end of it, so it doesn't distract in Insert Mode
+vim.api.nvim_set_hl(0, 'ExtraWhitespace', { bg = 'darkred', ctermbg = 'darkred' })
+
+local ws_group = vim.api.nvim_create_augroup('TrailingWhitespace', { clear = true })
+
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'InsertLeave' }, {
+  group = ws_group,
+  pattern = '*',
+  callback = function()
+    vim.fn.clearmatches() -- Clear previous matches to avoid stacking
+    vim.fn.matchadd('ExtraWhitespace', [[\s\+$]])
+  end,
+})
+
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = ws_group,
+  pattern = '*',
+  callback = function()
+    vim.fn.clearmatches()
+    vim.fn.matchadd('ExtraWhitespace', [[\s\+\%#\@<!$]])
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  group = ws_group,
+  pattern = '*',
+  callback = function()
+    vim.fn.clearmatches()
+  end,
+})
+-- ==========================================================================
