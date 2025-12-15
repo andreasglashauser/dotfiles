@@ -78,5 +78,6 @@
 	tool = nvimdiff
 [mergetool "nvimdiff"]
 	cmd = nvim -d \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\" -c \"wincmd J\"
+	layout = LOCAL,MERGED,REMOTE
 [mergetool]
 	prompt = false

@@ -95,11 +95,12 @@ vim.g.loaded_matchparen = 1
 
 
 vim.diagnostic.config({
-    --virtual_text = { severity = { min = vim.diagnostic.severity.HINT } },
+    virtual_text = { severity = { min = vim.diagnostic.severity.HINT } },
     signs         = { severity = { min = vim.diagnostic.severity.HINT } },
     underline     = { severity = { min = vim.diagnostic.severity.HINT } },
-    severity_sort = true,
-    virtual_lines = true,
+    severity_sort = true, -- sort diagnostic by severity
+    update_in_insert = false, -- dont update diagnostics while typing
+    --virtual_lines = true,
 })
 
 -- ==========================================================================

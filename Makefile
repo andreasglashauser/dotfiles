@@ -200,8 +200,6 @@ syncthing:
 	systemctl --user daemon-reload
 	systemctl --user enable syncthing.service
 
-
-
 update-syncthing:
 	@echo "Updating syncthing and rebuilding..."
 	sh -c "cd $$HOME/repos/syncthing && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"
@@ -210,3 +208,19 @@ update-syncthing:
 	cp -f syncthing.service ~/.config/systemd/user/
 	systemctl --user daemon-reload
 	systemctl --user enable syncthing.service
+
+
+lazygit:
+	@echo "Cloning syncthing..."
+	mkdir -p ~/repos/
+	if [ ! -d "$$HOME/repos/syncthing" ]; then \
+		git clone https://github.com/jesseduffield/lazygit $$HOME/repos/lazygit; \
+	fi
+	@echo "Building lazygit with go, installing to ~/.local/bin..."
+	mkdir -p $$HOME/.local/bin
+	sh -c "cd $$HOME/repos/lazygit && git pull && GOBIN='$$HOME/.local/bin' go install"
+
+update-lazygit:
+	@echo "Updating lazygti and rebuilding..."
+	sh -c "cd $$HOME/repos/lazygit && git pull && GOBIN='$$HOME/.local/bin' go install"
+>>>>>>> RIGHT
