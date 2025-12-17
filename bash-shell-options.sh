@@ -6,7 +6,7 @@ shopt -s direxpand # expands ~ on tab completing
 
 
 # look in current directory (.), then home (~), then custom folders
-export CDPATH=".:~:~/repos/csp"
+export CDPATH=".:~:~/repos:~/repos/csp"
 
 shopt -s extglob
 shopt -s cmdhist
