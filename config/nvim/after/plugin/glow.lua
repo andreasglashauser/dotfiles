@@ -4,11 +4,3 @@ local function open_glow()
 end
 
 vim.keymap.set("n", "<leader>mp", open_glow, { desc = "Markdown preview (glow) on the right" })
-
-local glow_group = vim.api.nvim_create_augroup("GlowMarkdownPreview", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-  group = glow_group,
-  pattern = "*.md",
-  callback = open_glow,
-})

@@ -1,5 +1,7 @@
 DOTFILES_DIR := $(CURDIR)
 HOME_DIR := $(HOME)
+BASH_PROFILE := $(HOME_DIR)/.bash_profile
+BASH_SHELL_OPTIONS := $(DOTFILES_DIR)/bash-shell-options.sh
 
 DOTFILES := Xresources gitconfig tmux.conf gitignore ideavimrc
 
@@ -10,7 +12,7 @@ install:
 		ln -svf $(DOTFILES_DIR)/$$file $(HOME_DIR)/.$$file; \
 	done
 
-	@echo "Creating symlinks for bashrc..."
+	@echo "Setting up bash helpers..."
 	mkdir -p $(HOME_DIR)/.bashrc.d
 	ln -svf $(DOTFILES_DIR)/aliases $(HOME_DIR)/.bashrc.d/aliases
 	ln -svf $(DOTFILES_DIR)/tmux-autostart.sh $(HOME_DIR)/.bashrc.d/tmux-autostart.sh
@@ -22,6 +24,16 @@ install:
 	mkdir -p $(HOME_DIR)/.local/shims
 	ln -sf $(DOTFILES_DIR)/tmux/tmux $(HOME)/.local/shims/tmux
 	ln -svf $(DOTFILES_DIR)/bun-bin $(HOME_DIR)/.bashrc.d/bun-bin
+	@echo "Ensuring bash profile sources shell options..."
+	@if [ ! -f "$(BASH_PROFILE)" ]; then \
+		echo "# ~/.bash_profile" > "$(BASH_PROFILE)"; \
+	fi
+	@if ! grep -Fq "$(BASH_SHELL_OPTIONS)" "$(BASH_PROFILE)"; then \
+		{ echo ""; echo "source $(BASH_SHELL_OPTIONS)"; } >> "$(BASH_PROFILE)"; \
+		echo "Added source line to $(BASH_PROFILE)"; \
+	else \
+		echo "$(BASH_PROFILE) already sources shell options"; \
+	fi
 
 	@echo "Creating symlink for Neovim configuration..."
 	mkdir -p $(HOME_DIR)/.config
@@ -223,4 +235,3 @@ lazygit:
 update-lazygit:
 	@echo "Updating lazygti and rebuilding..."
 	sh -c "cd $$HOME/repos/lazygit && git pull && GOBIN='$$HOME/.local/bin' go install"
->>>>>>> RIGHT

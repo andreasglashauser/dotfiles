@@ -9,6 +9,7 @@ local tools = {
   "js-debug-adapter",
   "netcoredbg",
   "uv",
+  "ty",
   "sonarlint-language-server",
   "bash-language-server",
   "shellcheck",
