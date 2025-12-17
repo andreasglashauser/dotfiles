@@ -3,7 +3,7 @@ require("mason-lspconfig").setup {
     ensure_installed = {
      "ts_ls"
     , "eslint"
-    , "basedpyright"
+    --, "basedpyright"
     , "ruff"
     , "omnisharp"
     , "texlab"
