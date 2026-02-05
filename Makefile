@@ -131,7 +131,7 @@ neovim:
 
 update-neovim:
 	@echo "Building and installing neovim to ~/.local/bin..."
-	sh -c 'cd ~/repos/neovim/ && git pull && rm -rf build && \
+	sh -c 'cd ~/repos/neovim/ && git pull && rm -rf build .deps && \
 		make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$$HOME/.local" && \
 		make install'
 
