@@ -15,6 +15,7 @@ install:
 	@echo "Setting up bash helpers..."
 	mkdir -p $(HOME_DIR)/.bashrc.d
 	ln -svf $(DOTFILES_DIR)/aliases $(HOME_DIR)/.bashrc.d/aliases
+	ln -svf $(DOTFILES_DIR)/bash-shell-options.sh $(HOME_DIR)/.bashrc.d/bash-shell-options.sh
 	ln -svf $(DOTFILES_DIR)/tmux-autostart.sh $(HOME_DIR)/.bashrc.d/tmux-autostart.sh
 	ln -svf $(DOTFILES_DIR)/killport $(HOME_DIR)/.bashrc.d/killport
 	ln -svf $(DOTFILES_DIR)/mason-bin $(HOME_DIR)/.bashrc.d/mason-bin
@@ -214,7 +215,7 @@ syncthing:
 
 update-syncthing:
 	@echo "Updating syncthing and rebuilding..."
-	sh -c "cd $$HOME/repos/syncthing && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"
+	sh -c "cd $$HOME/repos/syncthing && git pull && GOBIN='$$HOME/.local/bin' go run build.go --no-upgrade install syncthing"
 	install -Dm755 "$$HOME/repos/syncthing/bin/syncthing" "$$HOME/.local/bin/syncthing"
 	cd ~/repos/dotfiles 
 	cp -f syncthing.service ~/.config/systemd/user/

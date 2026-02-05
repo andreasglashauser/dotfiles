@@ -27,7 +27,6 @@ vim.cmd [[
 
   Plug 'stevearc/conform.nvim'
 
-  Plug 'ggml-org/llama.vim'
 
   Plug 'https://gitlab.com/schrieveslaach/sonarlint.nvim'
 
@@ -36,5 +35,8 @@ vim.cmd [[
   Plug 'nvim-tree/nvim-tree.lua'
   Plug 'nvim-tree/nvim-web-devicons'
 
+  Plug 'lervag/vimtex'
+
   call plug#end()
 ]]
+  -- Plug 'ggml-org/llama.vim'

@@ -1,0 +1,12 @@
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "tex", "plaintex" },
+  callback = function()
+    -- Auto-wrap text as you type (hard wrap)
+    -- 't' = auto-wrap text using textwidth
+    -- 'c' = auto-wrap comments (useful in LaTeX % comments too)
+    -- 'q' = allow formatting with gq
+    -- 'n' = recognize numbered lists
+    -- 'j' = remove comment leader when joining lines
+    vim.opt_local.formatoptions:append({ "t", "c", "q", "n", "j" })
+  end,
+})

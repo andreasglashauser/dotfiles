@@ -41,7 +41,6 @@ vim.opt.signcolumn = "yes"
 -- plugins feel more reponsive
 vim.opt.updatetime = 50
 
--- higlights column 70 as a visual guide for line length
 vim.opt.colorcolumn = "100"
 
 -- set colorscheme
